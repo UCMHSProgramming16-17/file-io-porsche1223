@@ -24,7 +24,7 @@ lat = gmapsdata['results'][0]['geometry']['location']['lat']
 lon = gmapsdata['results'][0]['geometry']['location']['lng']
 
 #api stuff
-csvwriter.writerow(['Date', 'Weather'])
+csvwriter.writerow(['Date', 'Weather', 'Location = ' + place])
 
 #making life slightly easier
 answer = input("Would you like to keep the time the same? ")
@@ -40,6 +40,7 @@ time2 = input("What is your birthdate? Exclude the year. The format is: [MM]-[DD
 time3 = int(input("Pick a start year. "))
 time4 = int(input("How many years' worth of data would you like to see? "))
 
+#making life extremely easy
 for x in range(time4):
     endpoint = "https://api.darksky.net/forecast/"
     key_darksky = "5b9e1c711f845dcbd163771bfa1793a7"
