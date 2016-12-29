@@ -26,15 +26,22 @@ lon = gmapsdata['results'][0]['geometry']['location']['lng']
 #api stuff
 csvwriter.writerow(['Date', 'Weather'])
 
-endpoint = "https://api.darksky.net/forecast/"
-key_darksky = "5b9e1c711f845dcbd163771bfa1793a7"
-time = input("Pick any point in time in the past. The format is [YYYY]-[MM]-[DD]. ")
-darkskyurl = endpoint + key_darksky + '/' + str(lat) + ',' + str(lon) + ',' + time
+answer = input("Would you like to keep the time the same? ")
+
+if answer == "yes":
+    time1 = input("Insert time in the following format: [HH]:[MM]:[SS]. ")
+    
+else:
+    time1 = input("Too bad. What is the time you would like to use? Same format applies. ")
 
 for x in range(10):
-    darkskyrequest = requests.get(darkskyurl, params = payload)
+    endpoint = "https://api.darksky.net/forecast/"
+    key_darksky = "5b9e1c711f845dcbd163771bfa1793a7"
+    time2 = input("Pick any point in time in the past. The format is [YYYY]-[MM]-[DD]. Brackets are not required. ")
+    darkskyurl = endpoint + key_darksky + '/' + str(lat) + ',' + str(lon) + ',' + str(time2 + 'T' + time1)
+    darkskyrequest = requests.get(darkskyurl)
     weather = darkskyrequest.json()
-    print(weather)
+    csvwriter.writerow([time2, weather["hourly"]["summary"]])
    
 #close file
 file.close()
