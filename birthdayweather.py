@@ -38,8 +38,9 @@ else:
     
 time2 = input("What is your birthdate? Exclude the year. The format is: [MM]-[DD]. ")
 time3 = int(input("Pick a start year. "))
+time4 = int(input("How many years' worth of data would you like to see? "))
 
-for x in range(10):
+for x in range(time4):
     endpoint = "https://api.darksky.net/forecast/"
     key_darksky = "5b9e1c711f845dcbd163771bfa1793a7"
     darkskyurl = endpoint + key_darksky + '/' + str(lat) + ',' + str(lon) + ',' + str(time3) + '-' + str(time2) + 'T' + str(time1)
